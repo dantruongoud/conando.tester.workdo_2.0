@@ -1,0 +1,6 @@
+Những thứ chưa làm:
+1. Thống kê
+2. Đội nhóm
+3. Đổi quà
+4. Ghim/Xóa Kaizen
+5. Chấm bài thi/Cấp chứng chỉ/Chứng chỉ đạt được
