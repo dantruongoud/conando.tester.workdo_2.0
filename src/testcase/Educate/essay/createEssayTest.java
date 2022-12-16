@@ -20,6 +20,7 @@ public class createEssayTest {
             createEssayPage essay = new createEssayPage(driver);
             editEducatePage edit = new editEducatePage(driver);
             excelhelpers excel = new excelhelpers();
+            excel.setExcelSheet("Bài thi tự luận");
 
             using.login();
             create.navigation_educate();
@@ -35,7 +36,6 @@ public class createEssayTest {
                 Thread.sleep(1000);
 
                 for (int i = 1; i < 8; i++) {
-                    excel.setExcelSheet("Bài thi tự luận");
                     System.out.println("======================");
 
                     System.out.println("Testcase: " + excel.getCellData("TCID", i));
