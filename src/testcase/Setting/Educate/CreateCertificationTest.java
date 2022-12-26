@@ -15,6 +15,7 @@ public class CreateCertificationTest {
             SignInPage using = new SignInPage(driver);
             CreateCategoryPage create = new CreateCategoryPage(driver);
             CreateCertificationPage create_certification = new CreateCertificationPage(driver);
+            
             using.login();
 
             using.navigation();

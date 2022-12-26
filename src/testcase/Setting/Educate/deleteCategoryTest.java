@@ -14,21 +14,21 @@ public class deleteCategoryTest {
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
+            CreateCategoryPage create = new CreateCategoryPage(driver);
+            edit_del_CategoryPage edit = new edit_del_CategoryPage(driver);
             using.login();
             using.navigation();
-            CreateCategoryPage create = new CreateCategoryPage(driver);
             create.navigation_educate();
             using.waitForPageLoaded();
-            edit_del_CategoryPage edit = new edit_del_CategoryPage(driver);
             edit.click_del();
             Thread.sleep(1000);
+            
             Alert alert = driver.switchTo().alert();
             System.out.println(alert.getText());
             System.out.println("=====================");
             alert.accept();
             System.out.println("Xóa thành công");
-            System.out.println("PASSED");
-            System.out.println("=====================");
+            using.passed();
         } catch (Exception e) {
             e.printStackTrace();
         }
