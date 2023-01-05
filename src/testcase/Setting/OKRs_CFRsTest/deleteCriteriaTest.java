@@ -15,22 +15,24 @@ public class deleteCriteriaTest {
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
+            cyclePage cycle = new cyclePage(driver);
+            CreateCriteriaPage criteria = new CreateCriteriaPage(driver);
+            deleteCriteriaPage delete = new deleteCriteriaPage(driver);
+
             using.login();
             using.navigation();
-            cyclePage cycle = new cyclePage(driver);
             cycle.navigation_OKRs_CFRs();
-            CreateCriteriaPage criteria = new CreateCriteriaPage(driver);
             criteria.navigation_criteria();
-            deleteCriteriaPage delete = new deleteCriteriaPage(driver);
             delete.click_delete();
             Thread.sleep(1000);
+
             Alert alert = driver.switchTo().alert();
+
             System.out.println(alert.getText());
             System.out.println("=========================");
             alert.accept();
             System.out.println("Xóa thành công");
-            System.out.println("PASSED");
-            System.out.println("=========================");
+            using.passed();
         } catch (Exception e) {
             e.printStackTrace();
         }

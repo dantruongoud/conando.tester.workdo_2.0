@@ -144,12 +144,6 @@ public class SignInPage {
         }
     }
 
-    public void print() {
-        System.out.println("Status: PASSED");
-        System.out.println("=========================");
-        cleartxt();
-    }
-
     public String displayedlogout() {
         WebElement logout = driver.findElement(By.tagName("h1"));
         return logout.getText().strip();

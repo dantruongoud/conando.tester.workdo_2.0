@@ -14,15 +14,17 @@ public class editCriteriaTest {
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
+            cyclePage cycle = new cyclePage(driver);
+            CreateCriteriaPage criteria = new CreateCriteriaPage(driver);
+            editCriteriaPage edit = new editCriteriaPage(driver);
+
             using.login();
             using.navigation();
-            cyclePage cycle = new cyclePage(driver);
             cycle.navigation_OKRs_CFRs();
-            CreateCriteriaPage criteria = new CreateCriteriaPage(driver);
             criteria.navigation_criteria();
-            editCriteriaPage edit = new editCriteriaPage(driver);
             edit.click_edit();
             Thread.sleep(1000);
+
             edit.cleartxt();
             criteria.click_save();
             System.out.println("=========================");
@@ -39,19 +41,14 @@ public class editCriteriaTest {
                     System.out.println("=========================");
                     System.out.println("Testcase: 2");
                     System.out.println("Cập nhật thành công");
-                    System.out.println("PASSED");
-                    System.out.println("=========================");
+                    using.passed();
                 } else {
-                    System.out.println("FAILED");
-                    System.out.println("=========================");
+                    using.failed();
                 }
             } else {
-                System.out.println("FAILED");
-                System.out.println("=========================");
+                using.failed();
             }
-        } catch (
-
-        Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

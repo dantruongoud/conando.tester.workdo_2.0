@@ -21,6 +21,8 @@ public class SignInTest {
 
                     excel.setExcelSheet("login");
 
+                    using.cleartxt();
+
                     System.out.println("=========================");
 
                     System.out.println("Testcase: " + excel.getCellData("TCID", i));
@@ -33,7 +35,7 @@ public class SignInTest {
 
                         case "Tên đăng nhập hoặc mật khẩu không đúng !":
                             System.out.println(noti);
-                            using.print();
+                            using.passed();
                             break;
 
                         default:

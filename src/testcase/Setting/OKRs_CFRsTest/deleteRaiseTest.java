@@ -15,23 +15,24 @@ public class deleteRaiseTest {
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
+            cyclePage cycle = new cyclePage(driver);
+            RaisePage raise = new RaisePage(driver);
+            deleteRaisePage del = new deleteRaisePage(driver);
+
             using.login();
             using.navigation();
-            cyclePage cycle = new cyclePage(driver);
             cycle.navigation_OKRs_CFRs();
             using.waitForPageLoaded();
-            RaisePage raise = new RaisePage(driver);
             raise.navigatoRaise();
-            deleteRaisePage del = new deleteRaisePage(driver);
             del.click_del();
             Thread.sleep(1000);
+
             Alert alert = driver.switchTo().alert();
             System.out.println("=========================");
             System.out.println(alert.getText().strip());
-            System.out.println("PASSED");
-            System.out.println("Xóa thành công");
-            System.out.println("=========================");
             alert.accept();
+            System.out.println("Xóa thành công");
+            using.passed();
         } catch (Exception e) {
             e.printStackTrace();
         }

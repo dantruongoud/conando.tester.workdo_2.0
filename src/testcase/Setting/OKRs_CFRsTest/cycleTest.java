@@ -20,29 +20,39 @@ public class cycleTest {
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
+            cyclePage cycle = new cyclePage(driver);
+
             using.login();
             using.navigation();
-            cyclePage cycle = new cyclePage(driver);
             cycle.navigation_OKRs_CFRs();
             Thread.sleep(1000);
+
             if (cycle.verifytitle()) {
-                cycle.click_create();
+
+                cycle.create_btn.click();
+
                 cycleTest[] data_test = {
                         new cycleTest(1, ""),
                         new cycleTest(2, "Cycle")
                 };
+
                 for (int i = 0; i < data_test.length; i++) {
+
+                    cycle.cleartxt();
                     System.out.println("=========================");
+
                     System.out.println("Testcase: " + data_test[i].testcase);
                     cycle.create_cycle(data_test[i].cycleName);
                     Thread.sleep(1000);
+
                     String noti = using.messgaeError_tagline();
+
                     switch (noti) {
                         case "Nhập các trường bắt buộc (*)":
-                            cycle.print();
+                            using.passed();
                             break;
                         case "Ngày bắt đầu không thể lớn hơn ngày kết thúc !":
-                            cycle.print();
+                            using.passed();
                             break;
                         default:
                             if (cycle.verifycyclenew()) {

@@ -18,23 +18,27 @@ public class RaiseTest {
 
     public static void main(String[] args) {
         try {
+            RaiseTest[] data_test = {
+                    new RaiseTest(1, ""),
+                    new RaiseTest(2, "A"),
+            };
+
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
+            cyclePage cycle = new cyclePage(driver);
+            RaisePage raise = new RaisePage(driver);
+
             using.login();
             using.navigation();
-            cyclePage cycle = new cyclePage(driver);
             cycle.navigation_OKRs_CFRs();
             using.waitForPageLoaded();
-            RaisePage raise = new RaisePage(driver);
+
             raise.navigatoRaise();
             Thread.sleep(1000);
             raise.click_create();
+
             if (using.verifyTitle("Cấu hình loại phiếu góp ý")) {
-                RaiseTest[] data_test = {
-                        new RaiseTest(1, ""),
-                        new RaiseTest(2, "A"),
-                };
                 for (int i = 0; i < data_test.length; i++) {
                     System.out.println("=========================");
                     System.out.println("Testcase: " + data_test[i].testcase);
