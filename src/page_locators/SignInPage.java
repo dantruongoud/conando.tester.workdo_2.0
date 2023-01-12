@@ -3,16 +3,9 @@ package page_locators;
 import java.util.List;
 
 import java.awt.Robot;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
+import org.openqa.selenium.support.ui.*;
 import java.awt.AWTException;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
@@ -20,25 +13,26 @@ import java.awt.event.KeyEvent;
 import java.time.Duration;
 
 public class SignInPage {
+
+    public String titlePagePlan = "Tổng quan kế hoạch";
+    public String titlePageWorks = "Danh sách công việc";
+    public String myWorkPage = "Công việc của tôi";
+
     private WebDriver driver;
 
     @FindBy(xpath = "//input[@placeholder='Nhập email...']")
-    @CacheLookup
     private WebElement username_input;
 
     @FindBy(xpath = "//input[@placeholder='Nhập password...']")
-    @CacheLookup
     private WebElement password_input;
 
     @FindBy(xpath = "//span[contains(text(),'Đăng nhập')]")
-    @CacheLookup
     private WebElement login_btn;
 
     @FindBy(how = How.ID, using = "notify")
     private List<WebElement> tagline;
 
     @FindBy(xpath = "//span[contains(text(),'Cấu hình')]")
-    @CacheLookup
     private WebElement naviga;
 
     @FindBy(css = "a[class='button is-link']")
@@ -150,9 +144,8 @@ public class SignInPage {
     }
 
     public void error_titlePage() {
-        System.out.println("Status: FAILED");
-        System.out.println("Sai tiêu đề trang hiển thị...");
-        System.out.println("=========================");
+        System.out.println("Sai tiêu đề trang hiển thị..." + driver.getTitle());
+        failed();
         driver.close();
     }
 
