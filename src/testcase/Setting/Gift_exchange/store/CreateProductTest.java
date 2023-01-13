@@ -18,26 +18,34 @@ public class CreateProductTest {
 
     public static void main(String[] args) {
         try {
-            baseSetup init = new baseSetup();
-            WebDriver driver = init.initChromeDriver();
-            SignInPage using = new SignInPage(driver);
-            using.login();
-            Thread.sleep(1000);
-            using.navigation();
-            CreateProductPage create = new CreateProductPage(driver);
-            create.navigation_exchange();
-            using.waitForPageLoaded();
-            create.click_create();
             CreateProductTest[] data_test = {
                     new CreateProductTest(1, "", "0"),
                     new CreateProductTest(2, "name", "0"),
                     new CreateProductTest(3, "name", "1"),
             };
+
+            baseSetup init = new baseSetup();
+            WebDriver driver = init.initChromeDriver();
+            SignInPage using = new SignInPage(driver);
+            CreateProductPage create = new CreateProductPage(driver);
+
+            using.login();
+
+            using.navigation();
+
+            create.navigation_exchange();
+            using.waitForPageLoaded();
+
+            create.click_create();
+
             for (int i = 0; i < data_test.length; i++) {
+                
                 System.out.println("=========================");
                 System.out.println("Testcase: " + data_test[i].testcase);
+                
                 create.createProduct(data_test[i].name, data_test[i].number);
                 Thread.sleep(1000);
+
                 String noti = using.messgaeError_tagline();
                 switch (noti) {
                     case "Nhập các trường bắt buộc (*)":
@@ -47,11 +55,9 @@ public class CreateProductTest {
                     default:
                         if (create.verifyText()) {
                             System.out.println("Tạo mới thành công");
-                            System.out.println("PASSED");
-                            System.out.println("=========================");
+                            using.passed();
                         } else {
-                            System.out.println("FAILED");
-                            System.out.println("=========================");
+                            using.failed();
                         }
                         break;
                 }

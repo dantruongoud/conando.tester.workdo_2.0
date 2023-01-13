@@ -17,6 +17,7 @@ public class SignInPage {
     public String titlePagePlan = "Tổng quan kế hoạch";
     public String titlePageWorks = "Danh sách công việc";
     public String myWorkPage = "Công việc của tôi";
+    public String titlePageStore = "Danh mục cửa hàng";
 
     private WebDriver driver;
 
