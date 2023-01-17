@@ -19,6 +19,13 @@ public class minusStarsTest {
 
     public static void main(String[] args) {
         try {
+            minusStarsTest[] data_test = {
+                    new minusStarsTest(1, ""),
+                    new minusStarsTest(2, ""),
+                    new minusStarsTest(3, "1"),
+                    new minusStarsTest(4, "1"),
+            };
+
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
@@ -35,14 +42,8 @@ public class minusStarsTest {
 
             minus.click_create();
 
-            minusStarsTest[] data_test = {
-                    new minusStarsTest(1, ""),
-                    new minusStarsTest(2, ""),
-                    new minusStarsTest(3, "1"),
-            };
-
             for (int i = 0; i < data_test.length; i++) {
-                
+
                 System.out.println("=========================");
 
                 System.out.println("Testcase: " + data_test[i].testcase);
@@ -58,9 +59,15 @@ public class minusStarsTest {
                     case "Bạn chưa nhập số sao muốn trừ !":
                         using.passed();
                         break;
+                    case "Bạn chưa chọn ví trừ sao!":
+                        using.passed();
+                        supply.starNumber_input.clear();
+                        supply.choseWallet();
+                        break;
                     default:
                         supply.click_confirm();
-                        if (noti.equals("Bạn đã trừ 1 sao cho 1 nhân sự.")) {
+                        noti = using.messgaeError_tagline();
+                        if (noti.equals("Bạn đã trừ 1 sao cho 1 nhân sự!")) {
                             using.passed();
                         } else {
                             using.failed();
