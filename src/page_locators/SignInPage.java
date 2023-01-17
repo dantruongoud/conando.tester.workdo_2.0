@@ -120,8 +120,8 @@ public class SignInPage {
             List<WebElement> companyList = driver.findElements(By.className("has-text-weight-bold"));
             for (WebElement row : companyList) {
                 String company_name = row.getText().strip();
-                System.out.println(company_name);
                 if (company_name.equals("Công Ty Demo")) {
+                    System.out.println(company_name);
                     row.click();
                 }
             }

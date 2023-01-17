@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class SupplyStarPage {
 
@@ -21,11 +22,14 @@ public class SupplyStarPage {
     @FindBy(xpath = "//span[contains(text(),'Xác nhận')]")
     private WebElement confirm_btn;
 
-    @FindBy(xpath = "/html/body/main/section/section[1]/div[2]/div/div[2]/table/tbody/tr[1]/td[1]/label/input")
+    @FindBy(xpath = "(//input[@type='checkbox'])[2]")
     private WebElement choseUser_btn;
 
     @FindBy(xpath = "//input[@type='number']")
-    private WebElement starNumber_input;
+    public WebElement starNumber_input;
+
+    @FindBy(xpath = "//div[@class='select']//select")
+    private WebElement selectWallet;
 
     public SupplyStarPage(WebDriver driver) {
         this.driver = driver;
@@ -77,4 +81,12 @@ public class SupplyStarPage {
         save_btn.click();
     }
 
+    public void choseWallet() {
+        try {
+            Select choseWallet = new Select(selectWallet);
+            choseWallet.selectByValue("2");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

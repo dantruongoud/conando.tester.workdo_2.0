@@ -22,6 +22,7 @@ public class SupplyStarTest {
                     new SupplyStarTest(1, ""),
                     new SupplyStarTest(2, ""),
                     new SupplyStarTest(3, "1"),
+                    new SupplyStarTest(4, "1"),
             };
 
             baseSetup init = new baseSetup();
@@ -58,12 +59,18 @@ public class SupplyStarTest {
                     case "Bạn chưa nhập số sao muốn cấp !":
                         using.passed();
                         break;
+                    case "Bạn chưa chọn ví cấp sao!":
+                        using.passed();
+                        supply.choseWallet();
+                        supply.starNumber_input.clear();
+                        break;
                     default:
                         supply.click_confirm();
                         noti = using.messgaeError_tagline();
-                        if (noti.equals("Bạn đã cấp 1 sao cho 1 nhân sự.")) {
+                        if (noti.equals("Bạn đã cấp 1 sao cho 1 nhân sự!")) {
                             using.passed();
                         } else {
+                            System.out.println(noti);
                             using.failed();
                         }
                         break;
