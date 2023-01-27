@@ -86,7 +86,7 @@ public class excelhelpers {
         }
     }
 
-    // Gọi ra hàm này nè
+    // Gọi ra hàm này dùng
     public String getCellData(String columnName, int rownum) throws Exception {
         return getCellData(rownum, columns.get(columnName));
     }
