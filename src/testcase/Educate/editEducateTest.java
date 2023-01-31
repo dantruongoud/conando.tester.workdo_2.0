@@ -11,13 +11,14 @@ import setupbase.baseSetup;
 public class editEducateTest {
     public static void main(String[] args) {
         try {
+            excelhelpers excel = new excelhelpers();
+            excel.setExcelSheet("Tạo khoá học");
+
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
             createEducatePage create = new createEducatePage(driver);
             editEducatePage edit = new editEducatePage(driver);
-            excelhelpers excel = new excelhelpers();
-            excel.setExcelSheet("Tạo khoá học");
 
             using.login();
             create.navigation_educate();
@@ -26,7 +27,7 @@ public class editEducateTest {
             create.CrudEducate();
             using.waitForPageLoaded();
 
-            if (using.verifyTitle("Quản lý khóa học")) {
+            if (using.verifyTitle(using.titlePageEditEducate)) {
 
                 edit.choseEducate("Automation");
                 using.waitForPageLoaded();

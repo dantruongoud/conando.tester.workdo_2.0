@@ -10,44 +10,56 @@ public class SignInTest {
 
     public static void main(String[] args) {
         try {
+            excelhelpers excel = new excelhelpers();
+            excel.setExcelSheet("login");
 
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
-            excelhelpers excel = new excelhelpers();
 
-            if (using.verifyTitle("Workdo")) {
+            if (using.verifyTitle(using.titlePageSignIn)) {
                 for (int i = 1; i < 6; i++) {
 
-                    excel.setExcelSheet("login");
+                    System.out.println("=========================");
+                    System.out.println("Testcase: " + excel.getCellData("TCID", i));
 
                     using.cleartxt();
-
-                    System.out.println("=========================");
-
-                    System.out.println("Testcase: " + excel.getCellData("TCID", i));
                     using.SignIn(excel.getCellData("username", i), excel.getCellData("password", i));
 
                     Thread.sleep(1200);
 
                     String noti = using.messgaeError_tagline();
-                    switch (noti) {
 
-                        case "Tên đăng nhập hoặc mật khẩu không đúng !":
-                            System.out.println(noti);
+                    for (int j = 0; j < using.taglinetext.length; j++) {
+                        if (noti.equals(using.taglinetext[j])) {
                             using.passed();
                             break;
-
-                        default:
-                            if (using.displayedlogout() != null) {
-                                System.out.println(using.displayedlogout());
-                                System.out.println("Đăng nhập thành công");
-                                using.passed();
-                            } else {
-                                using.failed();
-                            }
+                        } else if (using.displayedlogout().contains("Xin chào !")) {
+                            System.out.println("Đăng nhập thành công");
+                            using.passed();
                             break;
+                        } else {
+                            using.failed();
+                        }
                     }
+
+                    // switch (noti) {
+
+                    // case "Tên đăng nhập hoặc mật khẩu không đúng !":
+                    // System.out.println(noti);
+                    // using.passed();
+                    // break;
+
+                    // default:
+                    // if (using.displayedlogout() != null) {
+                    // System.out.println(using.displayedlogout());
+                    // System.out.println("Đăng nhập thành công");
+                    // using.passed();
+                    // } else {
+                    // using.failed();
+                    // }
+                    // break;
+                    // }
 
                     Thread.sleep(1200);
                 }

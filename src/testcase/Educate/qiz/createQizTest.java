@@ -27,10 +27,12 @@ public class createQizTest {
             Thread.sleep(1000);
             create.CrudEducate();
             using.waitForPageLoaded();
+
             edit.choseEducate("Automation");
             Thread.sleep(1200);
             qiz.navigation_qiz();
             using.waitForPageLoaded();
+
             if (edit.verifyLesson("CHI TIẾT BÀI TRẮC NGHIỆM")) {
                 edit.addQuestion();
                 Thread.sleep(1000);
@@ -38,10 +40,12 @@ public class createQizTest {
                 for (int i = 1; i < 10; i++) {
                     System.out.println("======================");
                     System.out.println("Testcase: " + excel.getCellData("TCID", i));
+
                     qiz.create_qiz(excel.getCellData("title", i), excel.getCellData("time", i),
                             excel.getCellData("point", i), excel.getCellData("content", i),
                             excel.getCellData("result", i));
                     using.Button_Component();
+                    
                     Thread.sleep(1200);
 
                     String noti = using.messgaeError_tagline();

@@ -31,7 +31,7 @@ public class CreateOKRsTest {
             create.click_create();
             using.waitForPageLoaded();
 
-            if (using.verifyTitle("OKRs - Công bố mục tiêu")) {
+            if (using.verifyTitle(using.titleOKRs)) {
 
                 for (int i = 1; i < 6; i++) {
 
@@ -43,6 +43,7 @@ public class CreateOKRsTest {
                     Thread.sleep(1200);
 
                     String noti = using.messgaeError_tagline();
+
                     switch (noti) {
                         case "Nhập các mục tiêu của bạn !":
                             create.print();

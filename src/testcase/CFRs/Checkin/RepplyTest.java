@@ -18,6 +18,11 @@ public class RepplyTest {
 
     public static void main(String[] args) {
         try {
+            RepplyTest[] data_test = {
+                    new RepplyTest(1, ""),
+                    new RepplyTest(2, "Cảm ơn Ngài!!!")
+            };
+
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
@@ -35,18 +40,18 @@ public class RepplyTest {
             Repply.navigation_repply();
             using.waitForPageLoaded();
 
-            if (using.verifyTitle("CFRs - Phản hồi Check-in")) {
-                RepplyTest[] data_test = {
-                        new RepplyTest(1, ""),
-                        new RepplyTest(2, "Cảm ơn Ngài!!!")
-                };
+            if (using.verifyTitle(using.titlePageRepplyCheckin)) {
+
                 for (int i = 0; i < data_test.length; i++) {
+
                     System.out.println("======================");
                     System.out.println("Testcase: " + data_test[i].testcase);
+                    
                     Repply.enterRepply(data_test[i].repply);
                     using.Button_Component();
                     
                     Thread.sleep(1000);
+
                     String noti = using.messgaeError_tagline();
                     switch (noti) {
                         case "Bạn chưa nhập nội dung phản hồi !":

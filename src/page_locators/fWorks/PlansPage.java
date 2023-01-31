@@ -83,6 +83,8 @@ public class PlansPage {
     @FindBy(how = How.CSS, using = ".item.pb-4")
     private List<WebElement> listTask;
 
+    public String[] taglinetext = { "Kế hoạch chưa có thành viên1.", "Bạn chưa nhập1 tiêu đề kế hoạch." };
+
     public PlansPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -226,7 +228,7 @@ public class PlansPage {
             System.out.println(title);
             String user_incharge = listTask.get(i).findElement(By.cssSelector(".image.is-24x24.is-rounded"))
                     .getAttribute("title");
-                    
+
             System.out.println(user_incharge);
             System.out.println();
         }

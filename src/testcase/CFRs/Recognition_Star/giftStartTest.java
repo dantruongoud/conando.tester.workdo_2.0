@@ -19,6 +19,14 @@ public class giftStartTest {
 
     public static void main(String[] args) {
         try {
+            giftStartTest[] data_test = {
+                    new giftStartTest(1, "2"),
+                    new giftStartTest(2, "2"),
+                    new giftStartTest(3, "0"),
+                    new giftStartTest(4, "1"),
+                    new giftStartTest(5, "1"),
+            };
+
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
@@ -31,24 +39,17 @@ public class giftStartTest {
             use.navigation_recognition();
             using.waitForPageLoaded();
 
-            if (using.verifyTitle("CFRs - Ghi nhận & Tặng sao")) {
+            if (using.verifyTitle(using.titlePageGiftStar)) {
+
                 giftStartPage Star = new giftStartPage(driver);
                 Star.select();
-
-                giftStartTest[] data_test = {
-                        new giftStartTest(1, "2"),
-                        new giftStartTest(2, "2"),
-                        new giftStartTest(3, "0"),
-                        new giftStartTest(4, "1"),
-                        new giftStartTest(5, "1"),
-                };
 
                 for (int i = 0; i < data_test.length; i++) {
                     System.out.println("======================");
                     System.out.println("Testcase: " + data_test[i].testcase);
                     Star.Stargift(data_test[i].number);
                     using.Button_Component();
-                    
+
                     Thread.sleep(1000);
                     String noti = using.messgaeError_tagline();
                     switch (noti) {
@@ -56,18 +57,12 @@ public class giftStartTest {
                             System.out.println(noti);
                             Star.print();
                             create.research("NGUYEN DAN TRUONG");
-                            Thread.sleep(1000);
-                            create.click_Usercheckin();
-                            Thread.sleep(1000);
                             break;
                         case "Bạn không thể ghi nhận - tặng sao cho chính mình !":
                             create.clearSearch();
                             System.out.println(noti);
                             Star.print();
                             create.research("Dương Thanh Trúc");
-                            Thread.sleep(1000);
-                            create.click_Usercheckin();
-                            Thread.sleep(1000);
                             break;
                         case "Bạn chưa chọn số sao muốn tặng !":
                             System.out.println(noti);

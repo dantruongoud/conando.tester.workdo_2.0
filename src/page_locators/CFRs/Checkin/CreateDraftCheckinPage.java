@@ -24,10 +24,10 @@ public class CreateDraftCheckinPage {
     @FindBy(css = "a[class='button is-link']")
     private WebElement create_btn;
 
-    @FindBy(xpath = "//body[1]/main[1]/section[1]/section[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[4]/div[1]/div[1]/select[1]")
+    @FindBy(xpath = "(//select)[1]")
     private WebElement selectConfident_OKRs;
 
-    @FindBy(xpath = "//body[1]/main[1]/section[1]/section[1]/div[2]/div[1]/table[1]/tbody[1]/tr[4]/td[4]/div[1]/div[1]/select[1]")
+    @FindBy(xpath = "(//select)[2]")
     private WebElement selectConfident_KRs;
 
     @FindBy(css = "li:nth-child(1) > div:nth-child(2) > textarea:nth-child(1)")
@@ -47,6 +47,9 @@ public class CreateDraftCheckinPage {
 
     @FindBy(className = "user_item")
     private WebElement chose_checkin;
+
+    public String[] tagline = { "Chưa nhập mức độ tự tin của Mục tiêu !",
+            "Bạn cần nhập đầy đủ tất cả thông tin bắt buộc !", "Bạn chưa chọn quản lý sẽ check-in với bạn !" };
 
     public CreateDraftCheckinPage(WebDriver driver) {
         this.driver = driver;
@@ -108,25 +111,18 @@ public class CreateDraftCheckinPage {
         try {
             Select confident_btn = new Select(selectConfident_OKRs);
             confident_btn.selectByVisibleText("Ổn");
+            Select confident_Btn = new Select(selectConfident_KRs);
+            confident_Btn.selectByVisibleText("Ổn");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void selectConfidentKRs() {
+    public void research(String condition) {
         try {
-            Select confident_btn = new Select(selectConfident_KRs);
-            confident_btn.selectByVisibleText("Ổn");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void research(String search) {
-        try {
-            if (search_input.isDisplayed()) {
-                search_input.sendKeys(search);
-            }
+            search_input.sendKeys(condition);
+            Thread.sleep(1000);
+            chose_checkin.click();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -134,16 +130,6 @@ public class CreateDraftCheckinPage {
 
     public void clearSearch() {
         search_input.clear();
-    }
-
-    public void click_Usercheckin() {
-        try {
-            if (chose_checkin.isDisplayed()) {
-                chose_checkin.click();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void cleartxt() {

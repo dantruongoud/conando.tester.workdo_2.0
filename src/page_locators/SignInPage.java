@@ -14,11 +14,23 @@ import java.time.Duration;
 
 public class SignInPage {
 
+    // Danh sách title trong web
+    public String titlePageSignIn = "Workdo";
     public String titlePagePlan = "Tổng quan kế hoạch";
     public String titlePageWorks = "Danh sách công việc";
     public String myWorkPage = "Công việc của tôi";
     public String titlePageStore = "Danh mục cửa hàng";
+    public String titlePageCheckin = "CFRs - Check-in";
+    public String titlePageRepplyCheckin = "CFRs - Phản hồi Check-in";
+    public String titlePageGiftStar = "CFRs - Ghi nhận & Tặng sao";
+    public String titlePageEducate = "Thông tin khóa học";
+    public String titlePageEditEducate = "Quản lý khóa học";
+    public String titlePageFeedback = "Góp ý hệ thống";
+    public String titlePageKaizen = "Diễn đàn Kaizen";
+    public String titlePageDetailsKaizen = "Chi tiết Kaizen";
+    public String titleOKRs = "OKRs - Công bố mục tiêu";
 
+    public String[] taglinetext = { "Tên đăng nhập hoặc mật khẩu không đúng!" };
     private WebDriver driver;
 
     @FindBy(xpath = "//input[@placeholder='Nhập email...']")
@@ -106,7 +118,7 @@ public class SignInPage {
             String validation = "";
             if (tagline.size() > 0) {
                 validation = tagline.get(0).getText().strip();
-                System.out.println("Notify: " + validation);
+                System.out.println("Notify System: " + validation);
             }
             return validation;
         } catch (Exception e) {

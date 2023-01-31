@@ -18,6 +18,15 @@ public class recognitionTest {
 
     public static void main(String[] args) {
         try {
+
+            recognitionTest[] data_test = {
+                    new recognitionTest(1, "content"),
+                    new recognitionTest(2, "content"),
+                    new recognitionTest(3, ""),
+                    new recognitionTest(4, ""),
+                    new recognitionTest(5, "content")
+            };
+
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
@@ -30,29 +39,24 @@ public class recognitionTest {
             use.navigation_recognition();
             using.waitForPageLoaded();
 
-            if (using.verifyTitle("CFRs - Ghi nhận & Tặng sao")) {
-                recognitionTest[] data_test = {
-                        new recognitionTest(1, "content"),
-                        new recognitionTest(2, "content"),
-                        new recognitionTest(3, ""),
-                        new recognitionTest(4, ""),
-                        new recognitionTest(5, "content")
-                };
+            if (using.verifyTitle(using.titlePageGiftStar)) {
+
                 for (int i = 0; i < data_test.length; i++) {
+
                     System.out.println("======================");
                     System.out.println("Testcase: " + data_test[i].testcase);
+
                     use.recognition(data_test[i].content);
                     using.Button_Component();
                     Thread.sleep(1200);
+
                     String noti = using.messgaeError_tagline();
+
                     switch (noti) {
                         case "Bạn chưa chọn người nhận !":
                             System.out.println(noti);
                             using.passed();
                             create.research("NGUYEN DAN TRUONG");
-                            Thread.sleep(1000);
-                            create.click_Usercheckin();
-                            Thread.sleep(1000);
                             use.clear();
                             break;
                         case "Bạn không thể ghi nhận - tặng sao cho chính mình !":
@@ -60,9 +64,6 @@ public class recognitionTest {
                             System.out.println(noti);
                             using.passed();
                             create.research("Dương Thanh Trúc");
-                            Thread.sleep(1000);
-                            create.click_Usercheckin();
-                            Thread.sleep(1000);
                             use.clear();
                             break;
                         case "Bạn chưa chọn tiêu chí ghi nhận !":

@@ -20,7 +20,7 @@ public class appraiseKaizenTest {
             appraiseKaizenPage appraise = new appraiseKaizenPage(driver);
             appraise.chose_Kaizen("Tôi cần góp ý");
             using.waitForPageLoaded();
-            if (using.verifyTitle("Chi tiết Kaizen")) {
+            if (using.verifyTitle(using.titlePageDetailsKaizen)) {
                 appraise.chose_menu();
                 Thread.sleep(1000);
                 appraise.chose_submenu();

@@ -22,11 +22,14 @@ public class createEducateTest {
             using.login();
             create.navigation_educate();
             Thread.sleep(1000);
+
             create.CrudEducate();
             using.waitForPageLoaded();
+
             using.Button_Component();
             Thread.sleep(2000);
-            if (using.verifyTitle("Thông tin khóa học")) {
+            
+            if (using.verifyTitle(using.titlePageEducate)) {
 
                 for (int i = 1; i < 4; i++) {
                     System.out.println("======================");

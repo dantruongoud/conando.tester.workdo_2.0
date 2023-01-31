@@ -22,7 +22,7 @@ public class CreateKaizenTest {
             kaizen.navigation_Kaizen();
             using.waitForPageLoaded();
 
-            if (using.verifyTitle("Diễn đàn Kaizen")) {
+            if (using.verifyTitle(using.titlePageKaizen)) {
                 using.Button_Component();
                 Thread.sleep(2000);
 
@@ -37,6 +37,7 @@ public class CreateKaizenTest {
                     Thread.sleep(1200);
 
                     String noti = using.messgaeError_tagline();
+
                     switch (noti) {
                         case "Nhập đủ tiêu đề và nội dung !":
                             kaizen.print();

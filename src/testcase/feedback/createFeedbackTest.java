@@ -30,7 +30,7 @@ public class createFeedbackTest {
             create.navigation_feedback();
             using.waitForPageLoaded();
 
-            if (using.verifyTitle("Góp ý hệ thống")) {
+            if (using.verifyTitle(using.titlePageFeedback)) {
                 using.Button_Component();
                 for (int i = 1; i < 4; i++) {
 

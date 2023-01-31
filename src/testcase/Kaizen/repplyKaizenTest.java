@@ -19,42 +19,44 @@ public class repplyKaizenTest {
 
     public static void main(String[] args) {
         try {
+            repplyKaizenTest[] data_test = {
+                    new repplyKaizenTest(1, ""),
+                    new repplyKaizenTest(2, "Tôi hơi bị kết cái Kaizen của bạn đấy"),
+            };
+
             baseSetup init = new baseSetup();
             WebDriver driver = init.initChromeDriver();
             SignInPage using = new SignInPage(driver);
-            using.login();
             CreateKaizenPage kaizen = new CreateKaizenPage(driver);
+            appraiseKaizenPage appraise = new appraiseKaizenPage(driver);
+            repplyKaizenPage repply = new repplyKaizenPage(driver);
+
+            using.login();
             kaizen.navigation_Kaizen();
             using.waitForPageLoaded();
-            appraiseKaizenPage appraise = new appraiseKaizenPage(driver);
+
             appraise.chose_Kaizen("Tôi cần góp ý");
             using.waitForPageLoaded();
-            repplyKaizenPage repply = new repplyKaizenPage(driver);
-            if (using.verifyTitle("Chi tiết Kaizen")) {
-                repplyKaizenTest[] data_test = {
-                        new repplyKaizenTest(1, ""),
-                        new repplyKaizenTest(2, "Tôi hơi bị kết cái Kaizen của bạn đấy"),
-                };
+
+            if (using.verifyTitle(using.titlePageDetailsKaizen)) {
                 for (int i = 0; i < data_test.length; i++) {
                     System.out.println("======================");
                     System.out.println("Testcase: " + data_test[i].testcase);
                     repply.enterContent(data_test[i].content);
                     using.Button_Component();
                     Thread.sleep(1000);
+
                     String noti = using.messgaeError_tagline();
                     switch (noti) {
                         case "Chưa nhập nội dung bình luận !":
-                            System.out.println(noti);
-                            System.out.println("PASSED");
-                            System.out.println("======================");
-                            using.uploadImage("//a[@title='Đính kèm hình ảnh']","");
+                            using.passed();
+                            using.uploadImage("//a[@title='Đính kèm hình ảnh']", "");
                             break;
                         default:
                             if (repply.verifyContent("Tôi hơi bị kết cái Kaizen của bạn đấy")) {
-                                System.out.println("PASSED");
-                                System.out.println("======================");
+                                using.passed();
                             } else {
-                                System.out.println("FAILED");
+                                using.failed();
                             }
                             break;
                     }
