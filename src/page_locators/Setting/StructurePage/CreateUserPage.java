@@ -8,9 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 public class CreateUserPage {
 
     public String[] tagline = {
-            "Bạn chưa nhập địa chỉ email, hoặc địa chỉ email không đúng !",
-            "Bạn chưa nhập họ và tên cho tài khoản !",
-            "Bạn chưa nhật mật khẩu cho tài khoản !"
+            "Bạn chưa nhập địa chỉ email, hoặc địa chỉ email không đúng!",
+            "Bạn chưa nhập họ và tên cho tài khoản!",
+            "Bạn chưa nhật mật khẩu cho tài khoản!"
     };
     WebDriver driver;
 
@@ -26,10 +26,10 @@ public class CreateUserPage {
     @FindBy(xpath = "//li[contains(@class,'column is-full')]//input[contains(@type,'text')]")
     private WebElement password_input;
 
-    @FindBy(xpath = "//body[1]/main[1]/section[1]/section[1]/div[2]/div[1]/form[1]/ul[1]/li[3]/div[1]/div[1]/input[1]")
+    @FindBy(xpath = "(//input[@type='text'])[2]")
     private WebElement lastname_input;
 
-    @FindBy(xpath = "//body[1]/main[1]/section[1]/section[1]/div[2]/div[1]/form[1]/ul[1]/li[4]/div[1]/div[1]/input[1]")
+    @FindBy(xpath = "(//input[@type='text'])[3]")
     private WebElement firstname_input;
 
     @FindBy(xpath = "//span[contains(text(),'Thêm mới')]")
@@ -68,16 +68,15 @@ public class CreateUserPage {
         save_btn.click();
     }
 
-    public void cleartxt() {
+    public void clearDataTest() {
         username_input.clear();
         lastname_input.clear();
         firstname_input.clear();
         password_input.clear();
     }
 
-    public void print() {
-        System.out.println("Status: PASSED");
-        System.out.println("=========================");
-        cleartxt();
-    }
+    // public void print() {
+    // System.out.println("Status: PASSED");
+    // System.out.println("=========================");
+    // }
 }

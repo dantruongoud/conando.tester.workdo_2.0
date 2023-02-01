@@ -34,16 +34,17 @@ public class CreateUserTest {
 
                 for (int i = 1; i < 7; i++) {
 
-                    System.out.println("=========================");
+                    System.out.println("======================");
 
                     System.out.println("Testcase: " + excel.getCellData("TCID", i));
+                    createUser.clearDataTest();
                     createUser.createUser(excel.getCellData("email", i), excel.getCellData("lastname", i),
                             excel.getCellData("firstname", i), excel.getCellData("password", i));
                     Thread.sleep(1200);
 
                     Boolean passed = false;
                     String noti = using.messgaeError_tagline();
-                    
+
                     for (int j = 0; j < createUser.tagline.length; j++) {
                         if (noti.equals(createUser.tagline[j])) {
                             passed = true;
@@ -52,6 +53,7 @@ public class CreateUserTest {
                         } else if (noti.contains("Đã tạo tài khoản:")) {
                             passed = true;
                             using.passed();
+                            break;
                         }
                     }
                     if (!passed)
