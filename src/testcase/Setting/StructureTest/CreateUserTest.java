@@ -10,7 +10,6 @@ import setupbase.baseSetup;
 
 public class CreateUserTest {
 
-
     public static void main(String[] args) {
         try {
             baseSetup init = new baseSetup();
@@ -42,27 +41,41 @@ public class CreateUserTest {
                             excel.getCellData("firstname", i), excel.getCellData("password", i));
                     Thread.sleep(1200);
 
+                    Boolean passed = false;
                     String noti = using.messgaeError_tagline();
-                    switch (noti) {
-                        case "Bạn chưa nhập địa chỉ email, hoặc địa chỉ email không đúng !":
-                            createUser.print();
+                    
+                    for (int j = 0; j < createUser.tagline.length; j++) {
+                        if (noti.equals(createUser.tagline[j])) {
+                            passed = true;
+                            using.passed();
                             break;
-                        case "Bạn chưa nhập họ và tên cho tài khoản !":
-                            createUser.print();
-                            break;
-                        case "Bạn chưa nhật mật khẩu cho tài khoản !":
-                            createUser.print();
-                            break;
-                        default:
-                            noti = using.messgaeError_tagline();
-                            if (noti != null) {
-                                using.passed();
-                            } else {
-                                using.failed();
-                            }
-                            break;
+                        } else if (noti.contains("Đã tạo tài khoản:")) {
+                            passed = true;
+                            using.passed();
+                        }
                     }
-                    Thread.sleep(1200);
+                    if (!passed)
+                        using.failed();
+                    // switch (noti) {
+                    // case "Bạn chưa nhập địa chỉ email, hoặc địa chỉ email không đúng !":
+                    // createUser.print();
+                    // break;
+                    // case "Bạn chưa nhập họ và tên cho tài khoản !":
+                    // createUser.print();
+                    // break;
+                    // case "Bạn chưa nhật mật khẩu cho tài khoản !":
+                    // createUser.print();
+                    // break;
+                    // default:
+                    // noti = using.messgaeError_tagline();
+                    // if (noti.contains("Đã tạo tài khoản:")) {
+                    // using.passed();
+                    // } else {
+                    // using.failed();
+                    // }
+                    // break;
+                    // }
+                    // Thread.sleep(1200);
                 }
             } else {
                 using.error_titlePage();

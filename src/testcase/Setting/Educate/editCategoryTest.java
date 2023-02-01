@@ -30,24 +30,19 @@ public class editCategoryTest {
             System.out.println("Testcase: 1");
             String noti = using.messgaeError_tagline();
             if (noti != null) {
-                System.out.println(noti);
-                System.out.println("PASSED");
-                System.out.println("=====================");
+                using.passed();
                 create.enterName("A");
                 create.click_save();
                 System.out.println("=====================");
                 System.out.println("Testcase: 2");
                 if (edit.verifyText()) {
                     System.out.println("Cập nhật thành công");
-                    System.out.println("PASSED");
-                    System.out.println("=====================");
+                    using.passed();
                 } else {
-                    System.out.println("FAILED");
-                    System.out.println("=====================");
+                    using.failed();
                 }
             } else {
-                System.out.println("FAILED");
-                System.out.println("=====================");
+                using.failed();
             }
         } catch (Exception e) {
             e.printStackTrace();

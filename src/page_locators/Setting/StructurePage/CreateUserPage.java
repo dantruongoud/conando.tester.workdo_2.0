@@ -7,6 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CreateUserPage {
 
+    public String[] tagline = {
+            "Bạn chưa nhập địa chỉ email, hoặc địa chỉ email không đúng !",
+            "Bạn chưa nhập họ và tên cho tài khoản !",
+            "Bạn chưa nhật mật khẩu cho tài khoản !"
+    };
     WebDriver driver;
 
     @FindBy(xpath = "//a[contains(text(),'Nhân sự')]")

@@ -12,6 +12,14 @@ import page_locators.SignInPage;
 
 public class WorksPage {
 
+    public String[] tagline = {
+            "Nhập tiêu đề của công việc!",
+            "Chọn người tham gia của công việc!",
+            "Nhập thời gian thực hiện của công việc!",
+            "Chưa chọn nhóm của công việc!",
+            "Đã tạo công việc thành công!"
+    };
+
     WebDriver driver;
 
     @FindBy(xpath = "//a[@class='has-text-black'][contains(.,'Công việc')]")

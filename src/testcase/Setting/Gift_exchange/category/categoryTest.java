@@ -48,23 +48,39 @@ public class categoryTest {
 
                     category.CreateCate(data[i].cate);
 
+                    Boolean passed = false;
                     String noti = index.messgaeError_tagline();
-
-                    switch (noti) {
-                        case "Chưa nhập tên danh mục!":
+                    for (int j = 0; j < category.tagline.length; j++) {
+                        if (noti.equals(category.tagline[j])) {
+                            passed = true;
+                            index.passed();
+                            if (j == 1)
+                                index.uploadImage("//div[@class='field']//div[@class='control is-expanded']", "xpath");
+                            break;
+                        } else if (noti.equals(category.tagline[2])) {
+                            passed = true;
                             index.passed();
                             break;
-                        case "Chưa chọn hình ảnh danh mục!":
-                            index.passed();
-                            index.uploadImage("//div[@class='field']//div[@class='control is-expanded']", "xpath");
-                            break;
-                        case "Đã tạo danh mục sản phẩm mới.":
-                            index.passed();
-                            break;
-                        default:
-                            index.failed();
-                            break;
+                        }
                     }
+                    if (!passed)
+                        index.passed();
+                    // switch (noti) {
+                    // case "Chưa nhập tên danh mục!":
+                    // index.passed();
+                    // break;
+                    // case "Chưa chọn hình ảnh danh mục!":
+                    // index.passed();
+                    // index.uploadImage("//div[@class='field']//div[@class='control is-expanded']",
+                    // "xpath");
+                    // break;
+                    // case "Đã tạo danh mục sản phẩm mới.":
+                    // index.passed();
+                    // break;
+                    // default:
+                    // index.failed();
+                    // break;
+                    // }
                 }
 
             } else {

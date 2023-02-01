@@ -7,6 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class categoryPage {
 
+    public String[] tagline = {
+            "Chưa nhập tên danh mục!",
+            "Chưa chọn hình ảnh danh mục!",
+            "Đã tạo danh mục sản phẩm mới."
+    };
     WebDriver driver;
 
     @FindBy(css = "a[href='/config/gift/category']")

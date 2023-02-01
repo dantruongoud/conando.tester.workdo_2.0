@@ -38,36 +38,53 @@ public class CreateWorksTest {
 
                         System.out.println("Test Case: " + excel.getCellData("TCID", i));
 
+                        works.txttitleWorks.clear();
                         works.CreateWorks(excel.getCellData("title", i));
 
+                        Boolean passed = false;
                         String noti = index.messgaeError_tagline();
-                        switch (noti) {
-                            case "Nhập tiêu đề của công việc!":
+                        for (int j = 0; j < works.tagline.length; j++) {
+                            if (noti.equals(works.tagline[j])) {
+                                passed = true;
                                 index.passed();
+                                if (j == 1)
+                                    works.addMember();
+                                if (j == 2)
+                                    works.choseDaysWorks();
+                                if (j == 3)
+                                    works.choseGroupWorks();
                                 break;
-                            case "Chọn người tham gia của công việc!":
-                                index.passed();
-                                works.addMember();
-                                works.txttitleWorks.clear();
-                                break;
-                            case "Nhập thời gian thực hiện của công việc!":
-                                index.passed();
-                                works.choseDaysWorks();
-                                works.txttitleWorks.clear();
-                                break;
-                            case "Chưa chọn nhóm của công việc!":
-                                index.passed();
-                                works.choseGroupWorks();
-                                works.txttitleWorks.clear();
-                                break;
-                            case "Đã tạo công việc thành công!":
-                                index.passed();
-                                break;
-                            default:
-                                index.failed();
-                                break;
-                        }
-                        Thread.sleep(1200);
+                            }
+                        }   
+                        if (!passed)
+                            index.failed();
+                        // switch (noti) {
+                        // case "Nhập tiêu đề của công việc!":
+                        // index.passed();
+                        // break;
+                        // case "Chọn người tham gia của công việc!":
+                        // index.passed();
+                        // works.addMember();
+                        // works.txttitleWorks.clear();
+                        // break;
+                        // case "Nhập thời gian thực hiện của công việc!":
+                        // index.passed();
+                        // works.choseDaysWorks();
+                        // works.txttitleWorks.clear();
+                        // break;
+                        // case "Chưa chọn nhóm của công việc!":
+                        // index.passed();
+                        // works.choseGroupWorks();
+                        // works.txttitleWorks.clear();
+                        // break;
+                        // case "Đã tạo công việc thành công!":
+                        // index.passed();
+                        // break;
+                        // default:
+                        // index.failed();
+                        // break;
+                        // }
+                        // Thread.sleep(1200);
                     }
                 } else {
                     index.error_titlePage();

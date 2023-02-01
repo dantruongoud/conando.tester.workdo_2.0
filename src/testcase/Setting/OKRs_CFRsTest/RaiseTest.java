@@ -42,8 +42,10 @@ public class RaiseTest {
                 for (int i = 0; i < data_test.length; i++) {
                     System.out.println("=========================");
                     System.out.println("Testcase: " + data_test[i].testcase);
+                    
                     raise.createRaise(data_test[i].name);
                     Thread.sleep(1000);
+
                     String noti = using.messgaeError_tagline();
                     switch (noti) {
                         case "Bạn cần nhập tên loại phiếu góp ý !":

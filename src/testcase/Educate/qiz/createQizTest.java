@@ -41,43 +41,61 @@ public class createQizTest {
                     System.out.println("======================");
                     System.out.println("Testcase: " + excel.getCellData("TCID", i));
 
+                    qiz.clearDataTest();
                     qiz.create_qiz(excel.getCellData("title", i), excel.getCellData("time", i),
                             excel.getCellData("point", i), excel.getCellData("content", i),
                             excel.getCellData("result", i));
                     using.Button_Component();
-                    
+
                     Thread.sleep(1200);
 
+                    Boolean passed = false;
                     String noti = using.messgaeError_tagline();
-                    switch (noti) {
-                        case "Nhập tiêu đề và thời lượng bài trắc nghiệm !":
-                            qiz.print();
+                    for (int j = 0; j < qiz.tagline.length; j++) {
+                        if (noti.equals(qiz.tagline[j])) {
+                            passed = true;
+                            using.passed();
+                            if (j == 5)
+                                qiz.checkbox_check.click();
                             break;
-                        case "Giá trị mức điểm đạt phải lớn hơn hoặc bằng 1 !":
-                            qiz.print();
+                        } else if (noti.equals(qiz.tagline[6])) {
+                            passed = true;
+                            using.passed();
                             break;
-                        case "Mức điểm đạt được của bài thi phải nhỏ hơn tổng điểm bài thi !":
-                            qiz.print();
-                            break;
-                        case "Có câu hỏi chưa nhập nội dung, vui lòng nhập nội dung cho câu hỏi":
-                            qiz.print();
-                            break;
-                        case "Có đáp án chưa có nội dung, vui lòng nhập nội dung cho đáp án !":
-                            qiz.print();
-                            break;
-                        case "Có câu hỏi chưa có đáp án đúng, vui lòng chọn 1 đáp án đúng cho câu hỏi !":
-                            qiz.print();
-                            qiz.checkbox_check.click();
-                            break;
-                        default:
-                            if (noti.equals("Đã cập nhật thông tin bài trắc nghiệm !")) {
-                                using.passed();
-                            } else {
-                                using.failed();
-                            }
-                            break;
+                        }
                     }
-                    Thread.sleep(1200);
+                    if (!passed)
+                        using.failed();
+                    // switch (noti) {
+                    // case "Nhập tiêu đề và thời lượng bài trắc nghiệm !":
+                    // qiz.print();
+                    // break;
+                    // case "Giá trị mức điểm đạt phải lớn hơn hoặc bằng 1 !":
+                    // qiz.print();
+                    // break;
+                    // case "Mức điểm đạt được của bài thi phải nhỏ hơn tổng điểm bài thi !":
+                    // qiz.print();
+                    // break;
+                    // case "Có câu hỏi chưa nhập nội dung, vui lòng nhập nội dung cho câu hỏi":
+                    // qiz.print();
+                    // break;
+                    // case "Có đáp án chưa có nội dung, vui lòng nhập nội dung cho đáp án !":
+                    // qiz.print();
+                    // break;
+                    // case "Có câu hỏi chưa có đáp án đúng, vui lòng chọn 1 đáp án đúng cho câu hỏi
+                    // !":
+                    // qiz.print();
+                    // qiz.checkbox_check.click();
+                    // break;
+                    // default:
+                    // if (noti.equals("Đã cập nhật thông tin bài trắc nghiệm !")) {
+                    // using.passed();
+                    // } else {
+                    // using.failed();
+                    // }
+                    // break;
+                    // }
+                    // Thread.sleep(1200);
                 }
             } else {
                 using.error_titlePage();
