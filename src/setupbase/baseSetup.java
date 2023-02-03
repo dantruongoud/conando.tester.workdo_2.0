@@ -23,8 +23,8 @@ public class baseSetup {
 
         // Disable notifications chrome
         useragent.addArguments("disable-notifications");
-        useragent.addArguments("--headless=new");
-        
+        // useragent.addArguments("--headless=new");
+
         driver = new ChromeDriver(useragent);
         System.out.println("Launching Chrome browser...");
         driver.manage().window().maximize();
