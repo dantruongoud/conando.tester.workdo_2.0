@@ -23,13 +23,16 @@ public class baseSetup {
 
         // Disable notifications chrome
         useragent.addArguments("disable-notifications");
-
+        useragent.addArguments("--headless=new");
+        
         driver = new ChromeDriver(useragent);
         System.out.println("Launching Chrome browser...");
         driver.manage().window().maximize();
+
         driver.get("https://work.conando.vn/");
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
 
         index.waitForPageLoaded();
         return driver;

@@ -30,7 +30,6 @@ public class SignInPage {
     public String titlePageDetailsKaizen = "Chi tiết Kaizen";
     public String titleOKRs = "OKRs - Công bố mục tiêu";
 
-    public String[] taglinetext = { "Tên đăng nhập hoặc mật khẩu không đúng!" };
     private WebDriver driver;
 
     @FindBy(xpath = "//input[@placeholder='Nhập email...']")
