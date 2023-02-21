@@ -56,7 +56,7 @@ public class SignInPage {
     }
 
     public String getTitle() {
-        return driver.getTitle();
+        return driver.getTitle().strip();
     }
 
     public boolean verifyTitle(String nameTitle) {

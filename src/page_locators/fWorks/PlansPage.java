@@ -83,7 +83,7 @@ public class PlansPage {
     @FindBy(how = How.CSS, using = ".item.pb-4")
     private List<WebElement> listTask;
 
-    public String[] taglinetext = { "Kế hoạch chưa có thành viên1.", "Bạn chưa nhập1 tiêu đề kế hoạch." };
+    public String[] taglinetext = { "Kế hoạch chưa có thành viên.", "Bạn chưa nhập tiêu đề kế hoạch." };
 
     public PlansPage(WebDriver driver) {
         this.driver = driver;
