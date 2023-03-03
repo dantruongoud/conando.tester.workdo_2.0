@@ -246,4 +246,8 @@ public class SignInPage {
         System.out.println("======================");
     }
 
+    public void waitForElementToBeClickable(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
 }

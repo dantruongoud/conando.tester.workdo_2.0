@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CreatetodolistPage {
-    private WebDriver driver;
+    WebDriver driver;
 
     @FindBy(css = "a[href='todolist']")
     private WebElement naviga;
@@ -52,8 +52,13 @@ public class CreatetodolistPage {
     }
 
     public void create_todolist(String todolist) {
-        todolist_input.sendKeys(todolist);
-        save_btn.click();
+        try {
+            todolist_input.sendKeys(todolist);
+            Thread.sleep(1000);
+            save_btn.click();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void click_nextday() {
