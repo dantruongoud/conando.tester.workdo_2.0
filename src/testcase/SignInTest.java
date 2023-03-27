@@ -36,7 +36,6 @@ public class SignInTest {
                             System.out.println(noti);
                             using.passed();
                             break;
-
                         default:
                             if (using.displayedlogout() != null) {
                                 System.out.println(using.displayedlogout());

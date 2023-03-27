@@ -29,6 +29,10 @@ public class SignInPage {
     public String titlePageKaizen = "Diễn đàn Kaizen";
     public String titlePageDetailsKaizen = "Chi tiết Kaizen";
     public String titleOKRs = "OKRs - Công bố mục tiêu";
+    public String titleHRM_Setup_Options = "Quản lý hạng mục";
+    public String titleHRM_Setup_locations = "Địa điểm chấm công";
+    public String titleHRM_Setup_Work_shift = "Thiết lập ca làm việc";
+    public String titleHRM_Setup_User_shift = "Phân ca làm việc";
 
     private WebDriver driver;
 
@@ -49,6 +53,15 @@ public class SignInPage {
 
     @FindBy(css = "a[class='button is-link']")
     private WebElement saveBtn;
+
+    @FindBy(xpath = "//a[@class='button is-link']")
+    public WebElement btn_isLink;
+
+    @FindBy(xpath = "//section[@class='modal-card-foot is-right']//a[@class='button is-link']")
+    public WebElement btn_isLink_Right;
+
+    @FindBy(xpath = "//a[@class='delete']")
+    public WebElement btn_Deltagline;
 
     public SignInPage(WebDriver driver) {
         this.driver = driver;
@@ -80,22 +93,6 @@ public class SignInPage {
         }
     }
 
-    public void waitForPageLoaded() {
-        ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
-                        .equals("complete");
-            }
-        };
-        try {
-            Thread.sleep(1000);
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-            wait.until(expectation);
-        } catch (Throwable error) {
-            System.out.println("Timeout waiting for Page Load Request to complete.");
-        }
-    }
-
     public void login() {
         try {
             Thread.sleep(2000);
@@ -113,15 +110,12 @@ public class SignInPage {
     }
 
     public String messgaeError_tagline() {
-        try {
-            String validation = "";
-            if (tagline.size() > 0) {
-                validation = tagline.get(0).getText().strip();
-                System.out.println("Notify System: " + validation);
-            }
+        String validation = "";
+        if (tagline.size() > 0) {
+            validation = tagline.get(0).getText().strip();
+            System.out.println("Notify System: " + validation);
             return validation;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
             return "Tagline is not Display...";
         }
     }
@@ -246,8 +240,32 @@ public class SignInPage {
         System.out.println("======================");
     }
 
-    public void waitForElementToBeClickable(WebElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+    public void waitForPageLoaded() {
+        ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
+                        .equals("complete");
+            }
+        };
+        try {
+            Thread.sleep(1000);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            wait.until(expectation);
+        } catch (Throwable error) {
+            System.out.println("Timeout waiting for Page Load Request to complete.");
+        }
+    }
+
+    // Chờ element được click, sau time sẽ timeout
+    public void waitForElementToBeClickable(WebDriver _driver, WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(_driver, Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
+
+    // Chờ element được hiển thị, sau time sẽ timeout
+    public void waitForElementVisible(WebDriver _driver, WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(_driver, Duration.ofSeconds(timeout));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
 }

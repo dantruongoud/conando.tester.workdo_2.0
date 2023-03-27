@@ -14,7 +14,9 @@ public class CreateOKRsPage {
     String[] tagline = { "Nhập các mục tiêu của bạn !",
             "Nhập đầy đủ tiêu đề của các kết quả then chốt hoặc xóa kết quả then chốt không cần thiết !",
             "Nhập đầy đủ mục tiêu của các kết quả then chốt !" };
+
     public List<String> listNoti = Arrays.asList(tagline);
+    
     private WebDriver driver;
 
     @FindBy(xpath = "//span[normalize-space()='OKRs']")

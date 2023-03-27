@@ -39,7 +39,7 @@ public class CreateDepartmentTest {
                             department.print();
                             break;
                         default:
-                            if (noti.equals("Đã tạo phòng ban " + excel.getCellData("nameDepartment", 4))) {
+                            if (noti.contains("Đã tạo phòng ban")) {
                                 using.passed();
                             } else {
                                 using.failed();

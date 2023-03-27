@@ -23,6 +23,7 @@ public class baseSetup {
 
         // Disable notifications chrome
         useragent.addArguments("disable-notifications");
+        useragent.addArguments("--remote-allow-origins=*");
         // useragent.addArguments("--headless=new");
 
         driver = new ChromeDriver(useragent);
