@@ -25,7 +25,7 @@ public class HRM_SetupPage {
             "Bạn chưa nhập vĩ độ!",
             "Bạn chưa nhập kinh độ!",
             "Bạn chưa nhập địa điểm!",
-            "Bạn chưa chọn công ty áp dung!",
+            "Bạn chưa chọn công ty áp dụng!",
     };
 
     public String[] taglineWorkShift = {
